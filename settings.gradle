@@ -1,0 +1,2 @@
+rootProject.name = "Byter Soundboard"
+include ':app'

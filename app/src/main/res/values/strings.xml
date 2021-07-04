@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Byter Soundboard</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="aboba">Абоба</string>
+    <string name="ny_blin">Ну блин</string>
+    <string name="chto_ze_delat">Что же делать?</string>
+    <string name="eli_pali">Ёлы-палы</string>
+    <string name="bye">Пока</string>
+    <string name="im_danila">Я Данила</string>
+    <string name="hi">Привет</string>
+    <string name="arrows_left"><![CDATA[<<]]></string>
+    <string name="arrows_right"><![CDATA[>>]]></string>
+    <string name="n_one">1</string>
+    <string name="n_two">2</string>
+    <string name="share">Поделиться</string>
+    <string name="setOnCall">Установить на звонок</string>
+    <string name="setOnSms">Установить на смс</string>
+    <string name="setOn">Установить</string>
+    <string name="chin_chopa">Чинь чопа</string>
+    <string name="info">info</string>
+    <string name="information">
+        Удерживайте кнопку для доп. функций.\nПри нажатии \"Поделиться\" звук сохраняется
+        \в папку byter_sounds в корне, делайте с ним что хотите.\nВерсия: 1.0</string>
+    <string name="go_to_medic_not">Сходи к врачу, больной. Не поставлю я тебе Бутера на звонок, не проси.</string>
+    <string name="share_toast">When the Byter is sus. (Мб, потом сделаю.)</string>
+</resources>
