@@ -21,7 +21,12 @@
     <string name="info">info</string>
     <string name="information">
         Удерживайте кнопку для доп. функций.\nПри нажатии \"Поделиться\" звук сохраняется
-        \в папку byter_sounds в корне, делайте с ним что хотите.\nВерсия: 1.0</string>
+        \в папку byter_sounds в корне, делайте с ним что хотите.\nВерсия: 2.0</string>
     <string name="go_to_medic_not">Сходи к врачу, больной. Не поставлю я тебе Бутера на звонок, не проси.</string>
     <string name="share_toast">When the Byter is sus. (Мб, потом сделаю.)</string>
+    <string name="byter_lager_gaming">Бутер лагерь гейминг</string>
+    <string name="fu">Фу</string>
+    <string name="razrivnaya">Разрывная</string>
+    <string name="slabenko">Слабенько</string>
+    <string name="tyazeliyslychay">Тяжелый случай</string>
 </resources>
