@@ -22,6 +22,7 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -44,6 +45,8 @@ public class FavoriteButtonsPage extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        sharedPreferences = getActivity().getApplicationContext().
+                getSharedPreferences(MainActivity.PREF_NAME, Context.MODE_PRIVATE);
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.page_list, null);
 
@@ -87,6 +90,19 @@ public class FavoriteButtonsPage extends Fragment {
             }
         } else if (itemId == R.id.unfavorite) {
             // TODO to unfavorite
+            ByterButtonsPage.favoriteButtons.remove((int) info.id);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            Gson gson = new Gson();
+
+            String json = gson.toJson(ByterButtonsPage.favoriteButtons);
+
+            editor.putString(MainActivity.ARRAY_LIST, json);
+            editor.commit();
+
+            FavoriteButtonsPage page1 = new FavoriteButtonsPage();
+            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.framel, page1);
+            ft.commit();
         }
 
         return true;

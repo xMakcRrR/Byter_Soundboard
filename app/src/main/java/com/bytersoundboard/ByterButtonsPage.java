@@ -68,6 +68,14 @@ public class ByterButtonsPage extends Fragment {
         byterAdapter = new ByterAdapter(getActivity(), soundButtons);
 
         // настраиваем избранное
+        sharedPreferences = getActivity().getApplicationContext().
+                getSharedPreferences(MainActivity.PREF_NAME, Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(MainActivity.ARRAY_LIST, null);
+        if (json != null) {
+            Type type = new TypeToken<ArrayList<SoundButton>>() {}.getType();
+            favoriteButtons = gson.fromJson(json, type);
+        }
 
         ListView byterList = (ListView) v.findViewById(R.id.buttonsList);
         byterList.setAdapter(byterAdapter);
@@ -110,6 +118,14 @@ public class ByterButtonsPage extends Fragment {
             favoriteButtons.add(new SoundButton(byterAdapter.getButton((int) info.id).getName(),
                     getActivity(),
                     byterAdapter.getButton((int) info.id).getSoundId()));
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            Gson gson = new Gson();
+
+            String json = gson.toJson(favoriteButtons);
+
+            editor.putString(MainActivity.ARRAY_LIST, json);
+            editor.commit();
         }
 
 
