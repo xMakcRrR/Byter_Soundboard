@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class ByterAdapter extends BaseAdapter {
     Context ctx;
     LayoutInflater lInflater;
-    ArrayList<SoundButton> objects;
+    private ArrayList<SoundButton> objects;
 
     ByterAdapter(Context context, ArrayList<SoundButton> buttons) {
         this.ctx = context;

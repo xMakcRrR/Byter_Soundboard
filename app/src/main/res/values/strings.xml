@@ -29,4 +29,8 @@
     <string name="razrivnaya">Разрывная</string>
     <string name="slabenko">Слабенько</string>
     <string name="tyazeliyslychay">Тяжелый случай</string>
+    <string name="favorite">Добавить в избранное</string>
+    <string name="unfavorite">Удалить из избранного</string>
+    <string name="tab_main">Все звуки</string>
+    <string name="tab_fav">Избранное</string>
 </resources>

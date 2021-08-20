@@ -5,13 +5,17 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     ByterButtonsPage page;
+    public static final String PREF_NAME = "BSB_PREF";
+    public static final String ARRAY_LIST = "ARRAY_LISTt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,17 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+
+        Button button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FavoriteButtonsPage page1 = new FavoriteButtonsPage();
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.framel, page1);
+                ft.commit();
+            }
+        });
 
         //show first page on start
         page = new ByterButtonsPage();
