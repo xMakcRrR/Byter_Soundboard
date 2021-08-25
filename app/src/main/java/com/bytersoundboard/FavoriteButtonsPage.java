@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -37,8 +38,8 @@ import java.util.ArrayList;
 
 public class FavoriteButtonsPage extends Fragment {
     private static final int REQUEST_STORE_PERMISSION_CODE = 1;
-    ArrayList<SoundButton> soundButtons = new ArrayList<SoundButton>();
-    ByterAdapter byterAdapter;
+    private ByterAdapter byterAdapter;
+    private ListView byterList;
 
     SharedPreferences sharedPreferences;
 
@@ -53,12 +54,27 @@ public class FavoriteButtonsPage extends Fragment {
         // настраиваем список
         byterAdapter = new ByterAdapter(getActivity(), ByterButtonsPage.favoriteButtons);
 
-        ListView byterList = (ListView) v.findViewById(R.id.buttonsList);
+        byterList = (ListView) v.findViewById(R.id.buttonsList);
         byterList.setAdapter(byterAdapter);
 
         registerForContextMenu(byterList);
 
         return v;
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        Log.d("Amogus", "on resume");
+        refresh();
+    }
+
+    private void refresh() {
+        byterAdapter = new ByterAdapter(getActivity(), ByterButtonsPage.favoriteButtons);
+        byterList.setAdapter(byterAdapter);
+
+        registerForContextMenu(byterList);
     }
 
     @Override
@@ -79,18 +95,18 @@ public class FavoriteButtonsPage extends Fragment {
                 requestPermissions();
             } else {
                 //Toast.makeText(getActivity(), "" + getString(R.string.share_toast), Toast.LENGTH_SHORT).show();
-                share(byterAdapter.getSoundId((int) info.id));
+                share(byterAdapter.getSoundId((int)info.id));
             }
         } else if (itemId == R.id.setOnCall) {
             if (!CheckPermissions()) {
                 requestPermissions();
             } else {
-                Toast.makeText(getActivity(), "" + getString(R.string.go_to_medic_not),
+                Toast.makeText(getActivity(), "efwef",
                         Toast.LENGTH_SHORT).show();
             }
         } else if (itemId == R.id.unfavorite) {
             // TODO to unfavorite
-            ByterButtonsPage.favoriteButtons.remove((int) info.id);
+            ByterButtonsPage.favoriteButtons.add(byterAdapter.getButton((int)info.id));
             SharedPreferences.Editor editor = sharedPreferences.edit();
             Gson gson = new Gson();
 
@@ -98,11 +114,14 @@ public class FavoriteButtonsPage extends Fragment {
 
             editor.putString(MainActivity.ARRAY_LIST, json);
             editor.commit();
+            refresh();
 
+            /*
             FavoriteButtonsPage page1 = new FavoriteButtonsPage();
             FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.framel, page1);
             ft.commit();
+             */
         }
 
         return true;

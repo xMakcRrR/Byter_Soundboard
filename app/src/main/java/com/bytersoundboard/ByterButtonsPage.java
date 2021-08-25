@@ -105,6 +105,13 @@ public class ByterButtonsPage extends Fragment {
                 //Toast.makeText(getActivity(), "" + getString(R.string.share_toast), Toast.LENGTH_SHORT).show();
                 share(byterAdapter.getSoundId((int) info.id));
             }
+        } else if(itemId == R.id.share2) {
+            if (!CheckPermissions()) {
+                requestPermissions();
+            } else {
+                //Toast.makeText(getActivity(), "" + getString(R.string.share_toast), Toast.LENGTH_SHORT).show();
+                share(favoriteButtons.get((int)info.id).getSoundId());
+            }
         } else if (itemId == R.id.setOnCall) {
             if (!CheckPermissions()) {
                 requestPermissions();
@@ -113,8 +120,6 @@ public class ByterButtonsPage extends Fragment {
                         Toast.LENGTH_SHORT).show();
             }
         } else if (itemId == R.id.favorite) {
-            // TODO add to favorite
-
             favoriteButtons.add(new SoundButton(byterAdapter.getButton((int) info.id).getName(),
                     getActivity(),
                     byterAdapter.getButton((int) info.id).getSoundId()));
@@ -123,6 +128,15 @@ public class ByterButtonsPage extends Fragment {
             Gson gson = new Gson();
 
             String json = gson.toJson(favoriteButtons);
+
+            editor.putString(MainActivity.ARRAY_LIST, json);
+            editor.commit();
+        } else if (itemId == R.id.unfavorite) {
+            ByterButtonsPage.favoriteButtons.remove(favoriteButtons.get((int)info.id));
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            Gson gson = new Gson();
+
+            String json = gson.toJson(ByterButtonsPage.favoriteButtons);
 
             editor.putString(MainActivity.ARRAY_LIST, json);
             editor.commit();

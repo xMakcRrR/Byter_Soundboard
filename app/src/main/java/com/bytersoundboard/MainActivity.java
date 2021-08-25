@@ -11,6 +11,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
+
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
     ByterButtonsPage page;
@@ -20,27 +25,47 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
+        setContentView(R.layout.tabs_main);
 
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        TabLayout tabLayout = findViewById(R.id.tabsByter);
+        TabItem tabMain = findViewById(R.id.tab_main);
+        TabItem tabFav = findViewById(R.id.tab_fav);
+        ViewPager viewPager = findViewById(R.id.byter_pager);
+
+        PagerAdapter pagerAdapter = new
+                PagerAdapter(getSupportFragmentManager(),
+                tabLayout.getTabCount());
+
+        viewPager.setAdapter(pagerAdapter);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onClick(View v) {
-                FavoriteButtonsPage page1 = new FavoriteButtonsPage();
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.framel, page1);
-                ft.commit();
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
             }
         });
 
+
+        /*
         //show first page on start
         page = new ByterButtonsPage();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.framel, page);
         ft.commit();
+        */
+
     }
 
     @Override

@@ -5,9 +5,9 @@
         android:id="@+id/unfavorite"
         android:title="@string/unfavorite" />
     <item
-        android:id="@+id/share"
+        android:id="@+id/share2"
         android:title="@string/share" />
     <item
-        android:id="@+id/setOnCall"
+        android:id="@+id/setOnCall2"
         android:title="@string/setOnCall" />
 </menu>
