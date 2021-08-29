@@ -33,8 +33,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 
 public class ByterButtonsPage extends Fragment {
@@ -53,10 +51,12 @@ public class ByterButtonsPage extends Fragment {
                 getString(R.string.eli_pali), getString(R.string.chin_chopa),
                 getString(R.string.byter_lager_gaming), getString(R.string.fu),
                 getString(R.string.razrivnaya), getString(R.string.slabenko),
-                getString(R.string.tyazeliyslychay)};
+                getString(R.string.tyazeliyslychay), getString(R.string.otdelniye_izv),
+                getString(R.string.prosti_poriv)};
         int[] _ids = {R.raw.hi, R.raw.bye, R.raw.im_danila, R.raw.aboba, R.raw.ny_blin,
                 R.raw.chto_ze_delat, R.raw.eli_pali, R.raw.chin_chopa, R.raw.byterlagergaming,
-                R.raw.fu, R.raw.razrivnaya, R.raw.slabenko, R.raw.tyazeliyslychay};
+                R.raw.fu, R.raw.razrivnaya, R.raw.slabenko, R.raw.tyazeliyslychay,
+                R.raw.otdelniye_izv, R.raw.prosti_poriv};
 
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.page_list, null);
@@ -105,13 +105,6 @@ public class ByterButtonsPage extends Fragment {
                 //Toast.makeText(getActivity(), "" + getString(R.string.share_toast), Toast.LENGTH_SHORT).show();
                 share(byterAdapter.getSoundId((int) info.id));
             }
-        } else if(itemId == R.id.share2) {
-            if (!CheckPermissions()) {
-                requestPermissions();
-            } else {
-                //Toast.makeText(getActivity(), "" + getString(R.string.share_toast), Toast.LENGTH_SHORT).show();
-                share(favoriteButtons.get((int)info.id).getSoundId());
-            }
         } else if (itemId == R.id.setOnCall) {
             if (!CheckPermissions()) {
                 requestPermissions();
@@ -131,19 +124,7 @@ public class ByterButtonsPage extends Fragment {
 
             editor.putString(MainActivity.ARRAY_LIST, json);
             editor.commit();
-        } else if (itemId == R.id.unfavorite) {
-            ByterButtonsPage.favoriteButtons.remove(favoriteButtons.get((int)info.id));
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            Gson gson = new Gson();
-
-            String json = gson.toJson(ByterButtonsPage.favoriteButtons);
-
-            editor.putString(MainActivity.ARRAY_LIST, json);
-            editor.commit();
         }
-
-
-
         return true;
     }
 

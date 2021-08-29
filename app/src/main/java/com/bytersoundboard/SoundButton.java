@@ -1,6 +1,5 @@
 package com.bytersoundboard;
 
-import android.app.Activity;
 import android.content.Context;
 import android.media.MediaPlayer;
 

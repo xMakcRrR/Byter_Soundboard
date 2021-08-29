@@ -23,7 +23,6 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -90,23 +89,23 @@ public class FavoriteButtonsPage extends Fragment {
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int itemId = item.getItemId();
-        if (itemId == R.id.share) {
+        if (itemId == R.id.share2) {
             if (!CheckPermissions()) {
                 requestPermissions();
             } else {
                 //Toast.makeText(getActivity(), "" + getString(R.string.share_toast), Toast.LENGTH_SHORT).show();
-                share(byterAdapter.getSoundId((int)info.id));
+                share(ByterButtonsPage.favoriteButtons.get((int)info.id).getSoundId());
             }
-        } else if (itemId == R.id.setOnCall) {
+        } else if (itemId == R.id.setOnCall2) {
             if (!CheckPermissions()) {
                 requestPermissions();
             } else {
-                Toast.makeText(getActivity(), "efwef",
+                Toast.makeText(getActivity(), getString(R.string.go_to_medic_not),
                         Toast.LENGTH_SHORT).show();
             }
         } else if (itemId == R.id.unfavorite) {
-            // TODO to unfavorite
-            ByterButtonsPage.favoriteButtons.add(byterAdapter.getButton((int)info.id));
+            ByterButtonsPage.favoriteButtons.remove(ByterButtonsPage.
+                    favoriteButtons.get((int)info.id));
             SharedPreferences.Editor editor = sharedPreferences.edit();
             Gson gson = new Gson();
 
@@ -114,14 +113,7 @@ public class FavoriteButtonsPage extends Fragment {
 
             editor.putString(MainActivity.ARRAY_LIST, json);
             editor.commit();
-            refresh();
-
-            /*
-            FavoriteButtonsPage page1 = new FavoriteButtonsPage();
-            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.framel, page1);
-            ft.commit();
-             */
+            byterAdapter.notifyDataSetChanged();
         }
 
         return true;
@@ -184,25 +176,5 @@ public class FavoriteButtonsPage extends Fragment {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
         return result == PackageManager.PERMISSION_GRANTED &&
                 result1 == PackageManager.PERMISSION_GRANTED;
-    }
-
-    public void saveArrayList(ArrayList<SoundButton> list, String key){
-        sharedPreferences = getActivity().getApplicationContext().
-                getSharedPreferences(MainActivity.PREF_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(list);
-        editor.putString(key, json);
-        editor.apply();
-
-    }
-
-    public ArrayList<SoundButton> getArrayList(String key){
-        sharedPreferences = getActivity().getApplicationContext().
-                getSharedPreferences(MainActivity.PREF_NAME, Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString(key, null);
-        Type type = new TypeToken<ArrayList<SoundButton>>() {}.getType();
-        return gson.fromJson(json, type);
     }
 }

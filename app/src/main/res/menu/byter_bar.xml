@@ -2,8 +2,14 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/barFav"
+        android:icon="@android:drawable/star_big_off"
+        android:title="@string/barFav"
+        app:showAsAction="always"></item>
+    <item
         android:id="@+id/barInfo"
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="@string/info"
         app:showAsAction="always"></item>
+
 </menu>
