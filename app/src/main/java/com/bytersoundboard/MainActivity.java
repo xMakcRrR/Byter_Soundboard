@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         //show first page on start
         showMain();
@@ -46,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected (MenuItem menuItem) {
         if (menuItem.getItemId() == R.id.barInfo) {
-            Toast.makeText(this, getString(R.string.information), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.information)
+                            + "\nVersion: " + BuildConfig.VERSION_NAME,
+                    Toast.LENGTH_LONG).show();
         } else if  (menuItem.getItemId() == R.id.barFav) {
             if (turnFav) {
                 showMain();

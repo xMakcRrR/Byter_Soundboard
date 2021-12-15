@@ -23,7 +23,7 @@
     <string name="information">
         Удерживайте кнопку для доп. функций.\nПри нажатии \"Поделиться\" звук сохраняется
         \в папку byter_sounds в корне, делайте с ним что хотите.\nКнопка со звездочкой слева
-        - переход к избранному. Версия: 2.1</string>
+        - переход к избранному.</string>
     <string name="go_to_medic_not">Сходи к врачу, больной. Не поставлю я тебе Бутера на звонок, не проси.</string>
     <string name="share_toast">When the Byter is sus. (Мб, потом сделаю.)</string>
     <string name="byter_lager_gaming">Бутер лагерь гейминг</string>
