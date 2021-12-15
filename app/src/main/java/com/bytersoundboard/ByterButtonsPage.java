@@ -58,12 +58,18 @@ public class ByterButtonsPage extends Fragment {
                 R.raw.fu, R.raw.razrivnaya, R.raw.slabenko, R.raw.tyazeliyslychay,
                 R.raw.otdelniye_izv, R.raw.prosti_poriv};
 
+        String[] buttons_new = getResources().getStringArray(R.array.byter_sound_names);
+        int[] _ids_new = {R.raw.hi, R.raw.bye, R.raw.im_danila, R.raw.aboba,
+                R.raw.byterlagergaming, R.raw.chin_chopa, R.raw.chto_ze_delat, R.raw.eli_pali,
+                R.raw.fu, R.raw.ny_blin, R.raw.otdelniye_izv, R.raw.prosti_poriv, R.raw.razrivnaya,
+                R.raw.slabenko, R.raw.tyazeliyslychay};
+
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.page_list, null);
 
         // настраиваем список
         for (int ifor = 0; ifor < buttons.length; ifor++) {
-            soundButtons.add(new SoundButton(buttons[ifor], getActivity(), _ids[ifor]));
+            soundButtons.add(new SoundButton(buttons_new[ifor], getActivity(), _ids_new[ifor]));
         }
         byterAdapter = new ByterAdapter(getActivity(), soundButtons);
 

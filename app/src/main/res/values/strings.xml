@@ -31,4 +31,25 @@
     <string name="favorite">Добавить в избранное</string>
     <string name="unfavorite">Удалить из избранного</string>
     <string name="barFav">Избранное</string>
+    <string name="barBass">Бассбуст</string>
+    <string name="BassOn">Бассбуст включен</string>
+    <string name="BassOff">Бассбуст выключен</string>
+
+    <string-array name="byter_sound_names">
+        <item>Привет</item>
+        <item>Пока</item>
+        <item>Я Данила</item>
+        <item>Абоба</item>
+        <item>Бутер лагерь гейминг</item>
+        <item>Чинь чопа</item>
+        <item>Что же делать</item>
+        <item>Ёлы палы</item>
+        <item>Фу</item>
+        <item>Ну блин</item>
+        <item>Отдельные извинения</item>
+        <item>Прости, Порыв</item>
+        <item>Разрывная</item>
+        <item>Слабенько</item>
+        <item>Тяжелый случай</item>
+    </string-array>
 </resources>

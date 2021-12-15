@@ -1,6 +1,7 @@
 package com.bytersoundboard;
 
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,28 +13,33 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     private boolean turnFav;
     private MenuItem star;
+    private MenuItem bass;
     private ByterButtonsPage page;
     private FavoriteButtonsPage favPage;
     public static final String PREF_NAME = "BSB_PREF";
     public static final String ARRAY_LIST = "ARRAY_LISTt";
+    public static boolean bassSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
 
+        setContentView(R.layout.activity_main);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         //show first page on start
         showMain();
         turnFav = false;
+        bassSwitch = false;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.byter_bar, menu);
         star = menu.findItem(R.id.barFav);
+        bass = menu.findItem(R.id.barBass);
         return true;
     }
 
@@ -50,6 +56,16 @@ public class MainActivity extends AppCompatActivity {
                 showFav();
                 star.setIcon(android.R.drawable.star_big_on);
                 turnFav = true;
+            }
+        } else if (menuItem.getItemId() == R.id.barBass) {
+            if (bassSwitch) {
+                bass.setIcon(android.R.drawable.ic_lock_silent_mode);
+                bassSwitch = false;
+                Toast.makeText(this, getString(R.string.BassOff), Toast.LENGTH_SHORT).show();
+            } else {
+                bass.setIcon(android.R.drawable.ic_lock_silent_mode_off);
+                bassSwitch = true;
+                Toast.makeText(this, getString(R.string.BassOn), Toast.LENGTH_SHORT).show();
             }
         }
         return true;

@@ -2,6 +2,11 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/barBass"
+        android:icon="@android:drawable/ic_lock_silent_mode"
+        android:title="@string/barBass"
+        app:showAsAction="always"></item>
+    <item
         android:id="@+id/barFav"
         android:icon="@android:drawable/star_big_off"
         android:title="@string/barFav"
