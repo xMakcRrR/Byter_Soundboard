@@ -16,6 +16,11 @@ public class SoundButton {
 
     public void playSound () {
         MediaPlayer mediaPlayer = MediaPlayer.create(context, soundId);
+
+        if (MainActivity.speedUpSwitch) {
+            mediaPlayer.setPlaybackParams(mediaPlayer.getPlaybackParams().setSpeed(2.0f));
+        }
+
         mediaPlayer.start();
     }
 

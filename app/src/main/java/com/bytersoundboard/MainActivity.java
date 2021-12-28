@@ -14,11 +14,13 @@ public class MainActivity extends AppCompatActivity {
     private boolean turnFav;
     private MenuItem star;
     private MenuItem bass;
+    private MenuItem speedUp;
     private ByterButtonsPage page;
     private FavoriteButtonsPage favPage;
     public static final String PREF_NAME = "BSB_PREF";
     public static final String ARRAY_LIST = "ARRAY_LISTt";
     public static boolean bassSwitch;
+    public static boolean speedUpSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         showMain();
         turnFav = false;
         bassSwitch = false;
+        speedUpSwitch = false;
     }
 
     @Override
@@ -41,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.byter_bar, menu);
         star = menu.findItem(R.id.barFav);
         bass = menu.findItem(R.id.barBass);
+        speedUp = menu.findItem(R.id.barSpeedUp);
+
+        bass.setVisible(false);
+
         return true;
     }
 
@@ -69,6 +76,14 @@ public class MainActivity extends AppCompatActivity {
                 bass.setIcon(android.R.drawable.ic_lock_silent_mode_off);
                 bassSwitch = true;
                 Toast.makeText(this, getString(R.string.BassOn), Toast.LENGTH_SHORT).show();
+            }
+        } else if (menuItem.getItemId() == R.id.barSpeedUp) {
+            if (speedUpSwitch) {
+                speedUp.setIcon(android.R.drawable.arrow_down_float);
+                speedUpSwitch = false;
+            } else {
+                speedUp.setIcon(android.R.drawable.arrow_up_float);
+                speedUpSwitch = true;
             }
         }
         return true;

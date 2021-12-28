@@ -45,14 +45,6 @@ public class ByterButtonsPage extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        String[] buttons = {getString(R.string.hi), getString(R.string.bye),
-                getString(R.string.im_danila), getString(R.string.aboba),
-                getString(R.string.ny_blin), getString(R.string.chto_ze_delat),
-                getString(R.string.eli_pali), getString(R.string.chin_chopa),
-                getString(R.string.byter_lager_gaming), getString(R.string.fu),
-                getString(R.string.razrivnaya), getString(R.string.slabenko),
-                getString(R.string.tyazeliyslychay), getString(R.string.otdelniye_izv),
-                getString(R.string.prosti_poriv)};
         int[] _ids = {R.raw.hi, R.raw.bye, R.raw.im_danila, R.raw.aboba, R.raw.ny_blin,
                 R.raw.chto_ze_delat, R.raw.eli_pali, R.raw.chin_chopa, R.raw.byterlagergaming,
                 R.raw.fu, R.raw.razrivnaya, R.raw.slabenko, R.raw.tyazeliyslychay,
@@ -62,13 +54,13 @@ public class ByterButtonsPage extends Fragment {
         int[] _ids_new = {R.raw.hi, R.raw.bye, R.raw.im_danila, R.raw.aboba,
                 R.raw.byterlagergaming, R.raw.chin_chopa, R.raw.chto_ze_delat, R.raw.eli_pali,
                 R.raw.fu, R.raw.ny_blin, R.raw.otdelniye_izv, R.raw.prosti_poriv, R.raw.razrivnaya,
-                R.raw.slabenko, R.raw.tyazeliyslychay};
+                R.raw.slabenko, R.raw.tyazeliyslychay, R.raw.prednovogodnee_pozdravlenie};
 
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.page_list, null);
 
         // настраиваем список
-        for (int ifor = 0; ifor < buttons.length; ifor++) {
+        for (int ifor = 0; ifor < buttons_new.length; ifor++) {
             soundButtons.add(new SoundButton(buttons_new[ifor], getActivity(), _ids_new[ifor]));
         }
         byterAdapter = new ByterAdapter(getActivity(), soundButtons);
